@@ -11,8 +11,10 @@ import { TauriService } from './services/tauri.service';
 import { FlowRunnerService } from './services/flow-runner.service';
 import { UI_ICONS, BLOCK_ICONS_SVG } from './utils/icons';
 import { formatTimerSeconds } from './utils/format';
+import { ToolsView } from './views/ToolsView';
+import { AlarmService } from './services/alarm.service';
 
-export type Route = 'home' | 'flow-editor' | 'active-timer' | 'live-timer' | 'calendar' | 'onboarding';
+export type Route = 'home' | 'flow-editor' | 'active-timer' | 'live-timer' | 'calendar' | 'tools' | 'onboarding';
 
 export class AppRouter {
   private appElement: HTMLElement;
@@ -24,6 +26,7 @@ export class AppRouter {
   }
 
   init(): void {
+    AlarmService.init(); //  Inicia el monitor de alarmas en segundo plano
     const user = StorageService.getUser();
     if (!user) {
       this.navigate('onboarding');
@@ -129,7 +132,10 @@ export class AppRouter {
                 data-route="live-timer"
                 title="${isBusy ? 'Bloqueado: hay una secuencia en marcha' : ''}"
               >
-                <span>-</span> Cronómetro ${isBusy ? '<span class="nav-lock-badge">🔒</span>' : ''}
+                <span>-</span> Cronómetro ${isBusy ? '<span class="nav-lock-badge"> </span>' : ''}
+              </button>
+              <button class="nav-item ${this.currentRoute === 'tools' ? 'active' : ''}" data-route="tools">
+                <span>-</span> Herramientas
               </button>
 
               <button class="nav-item ${this.currentRoute === 'calendar' ? 'active' : ''}" data-route="calendar">
@@ -336,6 +342,8 @@ FlowRunnerService.subscribe(() => {
         return CalendarView.render(this);
       case 'onboarding':
         return OnboardingView.render(this);
+      case 'tools':
+        return ToolsView.render(this);
       default:
         return HomeView.render(this);
     }
