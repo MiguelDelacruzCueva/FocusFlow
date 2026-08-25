@@ -2036,3 +2036,366 @@ html, body {
   color: #f87171;
   border-color: rgba(248, 113, 113, 0.3);
 }
+/* --- VISTA DE HERRAMIENTAS DE TIEMPO --- */
+.tools-view-container {
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.tools-grid-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .tools-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tools-card {
+  background-color: #121216;
+  border: 1px solid #1e1e26;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-sizing: border-box;
+}
+
+.tools-card-header {
+  margin-bottom: 1rem;
+}
+
+.tools-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-serif, serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #d1d1de;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* --- FORMULARIO DE CREACIÓN DE ALARMAS --- */
+.alarm-create-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.alarm-time-input {
+  background-color: #1a1a22;
+  border: 1px solid #282834;
+  border-radius: 8px;
+  color: #e5c158;
+  font-family: var(--font-timer);
+  font-size: 0.95rem;
+  padding: 0.5rem 0.6rem;
+  outline: none;
+}
+
+.alarm-time-input::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+
+.alarm-name-input {
+  flex: 1;
+  background-color: #1a1a22;
+  border: 1px solid #282834;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.8rem;
+  outline: none;
+}
+
+.alarm-name-input:focus, .alarm-time-input:focus {
+  border-color: #e5c158;
+}
+
+.alarm-add-btn {
+  background-color: #1a1a22;
+  border: 1px solid #282834;
+  border-radius: 8px;
+  color: #e5c158;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.alarm-add-btn:hover {
+  background-color: #e5c158;
+  color: #000;
+}
+
+/* --- LISTA DE ALARMAS --- */
+.alarms-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.alarm-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #16161d;
+  border: 1px solid #22222d;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.alarm-item-card.disabled {
+  opacity: 0.45;
+}
+
+.alarm-time-badge {
+  display: flex;
+  flex-direction: column;
+}
+
+.alarm-time-digits {
+  font-family: var(--font-timer);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #e5c158;
+  line-height: 1.1;
+}
+
+.alarm-countdown-tag {
+  font-size: 0.68rem;
+  color: #777788;
+  font-weight: 500;
+}
+
+.alarm-info-meta {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.alarm-item-title {
+  font-size: 0.88rem;
+  color: #d1d1de;
+  font-weight: 500;
+}
+
+.alarm-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Switch Toggle para la alarma */
+.alarm-toggle-btn {
+  width: 38px;
+  height: 20px;
+  background-color: #2a2a38;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+  padding: 2px;
+}
+
+.alarm-toggle-btn.on {
+  background-color: #4ade80;
+}
+
+.toggle-slider {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.alarm-toggle-btn.on .toggle-slider {
+  transform: translateX(18px);
+}
+
+.alarm-del-btn {
+  background: transparent;
+  border: none;
+  color: #666675;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.alarm-del-btn:hover {
+  color: #f87171;
+}
+
+.alarms-empty-state {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: #666675;
+}
+
+.alarms-empty-state p {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  color: #888898;
+}
+
+.alarms-empty-state span {
+  font-size: 0.75rem;
+}
+
+/* --- COLUMNA DERECHA --- */
+.tools-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Reloj Local */
+.local-clock-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at 50% 0%, #1a1a24 0%, #121216 100%);
+}
+
+.clock-badge-timezone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  color: #9999aa;
+  margin-bottom: 0.6rem;
+}
+
+.tz-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+}
+
+.local-live-clock {
+  font-family: var(--font-timer);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.local-live-date {
+  font-size: 0.8rem;
+  color: #777788;
+  margin-top: 0.4rem;
+}
+
+/* Cronómetro Progresivo */
+.stopwatch-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stopwatch-digits {
+  font-family: var(--font-timer);
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: #e5c158;
+  margin: 0.4rem 0 0.8rem 0;
+  letter-spacing: -0.02em;
+}
+
+.stopwatch-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.sw-btn {
+  background-color: #1a1a24;
+  border: 1px solid #282836;
+  color: #888898;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.sw-btn:hover {
+  background-color: #242432;
+  color: #fff;
+}
+
+.sw-play-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #e5c158;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.sw-play-btn:hover {
+  transform: scale(1.06);
+}
+
+.sw-play-btn.running {
+  background-color: #f87171;
+  color: #fff;
+}
+
+.stopwatch-laps-box {
+  width: 100%;
+  margin-top: 0.8rem;
+  max-height: 100px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sw-lap-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: #777788;
+  padding: 0.2rem 0.5rem;
+  border-bottom: 1px solid #1a1a24;
+}
+
+.sw-lap-val {
+  font-family: var(--font-timer);
+  color: #b0b0c0;
+}
